@@ -12,6 +12,7 @@ const authRoutes = require("./routes/auth.js");
 const userRoutes = require("./routes/user.js");
 const categoryRoutes = require("./routes/category.js");
 const productRoutes = require("./routes/product.js");
+const stripeRoutes = require("./routes/stripepayment")
 
 //db conncetion
 // mongodb+srv://mahisingh8561:<password>@cluster0.6v5jv1q.mongodb.net/?retryWrites=true&w=majority
@@ -39,13 +40,18 @@ module.exports = db;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin:'*', 
+  credentials:true,         
+  optionSuccessStatus:200
+}))
 
 //my routes
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
+app.use("/api", stripeRoutes);
 
 //port
 const port = process.env.PORT || 8000;
