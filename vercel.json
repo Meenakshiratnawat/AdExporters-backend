@@ -9,7 +9,15 @@
     "rewrites": [
       { 
         "source": "/api/(.*)", 
-        "destination": "app.js"
+        "destination": "app.js",
+        "methods": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "OPTIONS",
+          "DELETE"
+        ]
       }
     ],
     "headers": [
