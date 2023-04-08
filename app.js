@@ -6,6 +6,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+app.use(cors({
+  origin: '*'
+}));
 
 //routes
 const authRoutes = require("./routes/auth.js");
@@ -40,12 +43,6 @@ module.exports = db;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
-  credentials: true
-}))
 
 //my routes
 app.use("/api", authRoutes);
