@@ -7,13 +7,13 @@ const { signout, signup ,signin, isSignedIn } = require("../controllers/auth.js"
 router.post("/signup",[
     check('name')
     .isLength({ min: 5 })
-    .withMessage('name must be at least 5 chars long'),
+    .withMessage('name must be at least 5 characters long'),
     check('email')
     .isEmail()
     .withMessage('email is required'),
     check('encry_password')
     .isLength({ min: 3 })
-    .withMessage('password should be at least 3 chars long'),
+    .withMessage('password must be at least 3 characters long'),
 ], signup);
 
 router.post(

@@ -41,14 +41,14 @@ exports.signin = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "USER email does not exists"
+        error: "Email does not exists, please sign up to continue."
       });
     }
 
     if (!user.autheticate(encry_password)) {
    //console.log( "checkpoint")
       return res.status(401).json({
-        error: "Email and encry_password do not match"
+        error: "Email and Password do not match"
       })
     }
 

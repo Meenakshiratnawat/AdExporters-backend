@@ -25,18 +25,35 @@ exports.getCategoryById = (req, res, next, id) => {
   };
   
   exports.getCategory = (req, res) => {
+
     return res.json(req.category);
   };
   
-  exports.getAllCategory = (req, res) => {
-    Category.find().exec((err, categories) => {
-      if (err) {
+  // exports.getAllCategory = (req, res) => {
+  //   Category.find().exec((err, categories) => {
+  //     if (err) {
+  //       return res.status(400).json({
+  //         error: "NO categories found"
+  //       });
+  //     }
+  //     res.json(categories);
+  //   });
+  // };
+  
+  exports.getAllCategory = async (req, res) => {
+    try {
+      const categories = await Category.find().exec();
+      if (!categories || categories.length === 0) {
         return res.status(400).json({
-          error: "NO categories found"
+          error: "No categories found"
         });
       }
       res.json(categories);
-    });
+    } catch (err) {
+      return res.status(500).json({
+        error: "Internal server error",err
+      });
+    }
   };
   
   exports.updateCategory = (req, res) => {
