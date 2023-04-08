@@ -6,23 +6,10 @@
         "use": "@now/node"
       }
     ],
-    "rewrites": [
-      { 
-        "source": "/api/(.*)", 
-        "destination": "app.js",
-        "methods": [
-          "GET",
-          "POST",
-          "PUT",
-          "PATCH",
-          "OPTIONS",
-          "DELETE"
-        ]
-      }
-    ],
     "headers": [
       {
         "source": "/api/(.*)",
+        "destination": "app.js",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "*" },
