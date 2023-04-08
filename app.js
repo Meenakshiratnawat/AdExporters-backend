@@ -6,9 +6,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-app.use(cors({
-  origin: '*'
-}));
 
 //routes
 const authRoutes = require("./routes/auth.js");
@@ -43,6 +40,7 @@ module.exports = db;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 //my routes
 app.use("/api", authRoutes);
