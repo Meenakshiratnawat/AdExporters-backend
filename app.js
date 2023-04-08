@@ -40,11 +40,7 @@ module.exports = db;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors({
-  origin:'*', 
-  credentials:true,         
-  optionSuccessStatus:200
-}))
+app.use(cors())
 
 //my routes
 app.use("/api", authRoutes);
